@@ -21,7 +21,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 px-4 bg-gray-50 dark:bg-gray-900 relative grain">
+    <section id="portfolio" className="py-20 px-4 bg-gray-50 dark:bg-[#171727] relative">
       <div className="container mx-auto">
         <motion.div 
           className="text-center mb-16"
@@ -66,7 +66,7 @@ const Portfolio = () => {
                   {item.tags.map((tag, tagIndex) => (
                     <span 
                       key={tagIndex}
-                      className={`${tag.color} text-purple px-3 py-1 rounded-full text-xs font-medium`}
+                      className={`${tag.color} text-black dark:text-[#ffffff] px-3 py-1 rounded-full text-xs font-medium`}
                     >
                       {tag.name}
                     </span>

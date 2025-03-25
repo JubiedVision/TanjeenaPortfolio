@@ -22,7 +22,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Designed with <i className="ri-heart-fill text-coral"></i> in San Francisco
+          Designed with <i className="ri-heart-fill text-coral"></i> by Jubied Emon
         </motion.p>
       </div>
     </footer>

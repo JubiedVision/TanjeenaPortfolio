@@ -31,7 +31,6 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '#about', label: 'About' },
-    { href: '#experience', label: 'Experience' },
     { href: '#portfolio', label: 'Portfolio' },
     { href: '#contact', label: 'Contact' }
   ];
@@ -40,10 +39,8 @@ const Navbar = () => {
     <>
       <nav className={`fixed top-0 left-0 w-full z-50 px-4 py-3 transition-all duration-300 ${scrolled ? 'glass shadow-md' : 'glass'}`}>
         <div className="container mx-auto flex justify-between items-center">
-          <Link href="/">
-            <a className="text-2xl font-playfair font-semibold text-purple">
-              Tanjina<span className="text-coral">.</span>
-            </a>
+          <Link href="/" className="text-2xl font-playfair font-semibold text-purple">
+            Tanjina<span className="text-coral">.</span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -60,14 +57,15 @@ const Navbar = () => {
             ))}
             <button 
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-lavender/50 hover:bg-lavender transition-colors duration-300"
+              className="p-2 rounded-full bg-lavender/50 hover:bg-lavender transition-colors duration-300 dark:bg-purple/30 dark:hover:bg-purple/50"
               onMouseEnter={handleHover}
               onMouseLeave={handleUnhover}
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? (
-                <i className="ri-sun-line text-purple"></i>
+                <i className="ri-moon-fill text-purple text-lg"></i>
               ) : (
-                <i className="ri-moon-line text-purple"></i>
+                <i className="ri-sun-fill text-purple text-lg dark:text-lavender"></i>
               )}
             </button>
           </div>
@@ -112,12 +110,13 @@ const Navbar = () => {
             
             <button 
               onClick={toggleTheme}
-              className="p-3 rounded-full bg-lavender/50 hover:bg-lavender transition-colors duration-300"
+              className="p-3 rounded-full bg-lavender/50 hover:bg-lavender transition-colors duration-300 dark:bg-purple/30 dark:hover:bg-purple/50"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? (
-                <i className="ri-sun-line text-purple"></i>
+                <i className="ri-moon-fill text-purple text-lg"></i>
               ) : (
-                <i className="ri-moon-line text-purple"></i>
+                <i className="ri-sun-fill text-purple text-lg dark:text-lavender"></i>
               )}
             </button>
           </motion.div>

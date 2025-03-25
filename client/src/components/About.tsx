@@ -41,7 +41,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 px-4 bg-gray-50 dark:bg-gray-900 relative grain">
+    <section id="about" className="py-20 px-4 bg-gray-50 dark:bg-[#171727] relative">
       <div className="container mx-auto">
         <motion.div 
           className="text-center mb-16"

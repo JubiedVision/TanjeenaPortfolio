@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Experience from '@/components/Experience';
 import Portfolio from '@/components/Portfolio';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -14,9 +13,21 @@ export default function Home() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    document.body.className = theme === 'dark' 
-      ? 'bg-gray-900 text-white transition-colors duration-300' 
-      : 'bg-white text-charcoal transition-colors duration-300';
+    // Only apply theme if it's defined
+    if (theme) {
+      document.body.setAttribute('data-theme', theme);
+      
+      if (theme === 'dark') {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+    }
+
+    // Cleanup function
+    return () => {
+      // Optional: reset theme when component unmounts
+    };
   }, [theme]);
 
   return (
@@ -31,7 +42,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Experience />
       <Portfolio />
       <Contact />
       <Footer />

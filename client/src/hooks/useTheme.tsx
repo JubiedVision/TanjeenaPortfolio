@@ -7,16 +7,36 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+// Create a default context value instead of undefined
+const defaultThemeContext: ThemeContextType = {
+  theme: 'light',
+  toggleTheme: () => {},
+};
+
+const ThemeContext = createContext<ThemeContextType>(defaultThemeContext);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<Theme>('light');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    // Check local storage
     const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+    // Check system preference if no saved theme
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    
+    const initialTheme = savedTheme || systemPreference;
+    setTheme(initialTheme);
+    
+    // Apply theme
+    if (initialTheme === 'dark') {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
     }
+    
+    document.body.setAttribute('data-theme', initialTheme);
   }, []);
 
   const toggleTheme = () => {
@@ -32,6 +52,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // Avoid hydration mismatch by rendering only after mounted
+  if (!mounted) {
+    return <>{children}</>;
+  }
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
@@ -41,8 +66,5 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  return context; // Now this will return the default context if used outside a provider
 };

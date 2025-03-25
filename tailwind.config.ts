@@ -13,6 +13,12 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        purple: "#8A63D2",
+        blush: "#F2C4C0",
+        lavender: "#D7B8F3",
+        mint: "#A8E5D0",
+        coral: "#F6A192",
+        charcoal: "#2C2C2C",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
